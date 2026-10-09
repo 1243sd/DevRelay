@@ -1,0 +1,17 @@
+[Unit]
+Description=Pi desktop task orchestrator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=piworker
+WorkingDirectory=/opt/devrelay
+ExecStart=/usr/bin/node /opt/devrelay/dist/server.js
+Restart=on-failure
+RestartSec=10
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
